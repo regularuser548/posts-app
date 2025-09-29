@@ -19,7 +19,7 @@ class ApiPostController extends Controller
      */
     public function index(): JsonResponse
     {
-        $posts = Post::with('author')->latest()->paginate(self::PAGE_SIZE);
+        $posts = Post::with('user')->latest()->paginate(self::PAGE_SIZE);
         return response()->json($posts);
     }
 
@@ -41,7 +41,7 @@ class ApiPostController extends Controller
      */
     public function show(Post $post): JsonResponse
     {
-        return response()->json($post->with('author'));
+        return response()->json($post->with('user'));
     }
 
     /**
